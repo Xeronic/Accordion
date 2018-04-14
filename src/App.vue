@@ -1,17 +1,22 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Accordion title="Press me to uncollapse">
+      <template slot="Body">
+      <h3>Something fun!</h3>
+      <p>Hi all, something fun is up tonight!</p>
+      </template>
+    </Accordion>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Accordion from "./components/Accordion.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    Accordion
   }
 };
 </script>
