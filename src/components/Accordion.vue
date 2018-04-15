@@ -5,8 +5,8 @@
       <i :class="isShow ? 'fas fa-angle-down': 'fas fa-angle-right'" />
     </div>
     <div class="c-accordion-body" :style="{height: height}">
-      <div class="body-text">
-        <slot name="Body" />
+      <div :id="'c-accordion-' + id" class="c-accordion-body-text">
+        <slot />
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "Accordion",
-  props: ["title"],
+  props: ["title", "id"],
   data() {
     return {
       isShow: false,
@@ -29,7 +29,9 @@ export default {
       this.isShow = !this.isShow;
 
       if (this.isShow) {
-        this.element = document.querySelector(".body-text");
+        this.element = document.querySelector(
+          "#c-accordion-" + this.id + ".c-accordion-body-text"
+        );
         window.el = this.element;
         this.height = window.getComputedStyle(this.element).height;
       } else {
@@ -58,7 +60,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   text-align: left;
-  background-color: palevioletred;
+  background-color: darkcyan;
   padding: 32px 16px;
   transition: all 1s ease-in-out;
 }
@@ -70,7 +72,7 @@ export default {
   transition: all 0.225s ease-in-out;
 }
 
-.body-text {
+.c-accordion-body-text {
   overflow: auto;
   padding: 32px 16px;
   bottom: 0;
